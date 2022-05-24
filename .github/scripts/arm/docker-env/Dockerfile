@@ -4,7 +4,7 @@ FROM ubuntu:focal as postgrest-build
 
 RUN apt-get update -y \
     && apt-get upgrade -y \
-    && apt-get install -y git build-essential curl libffi-dev libffi7 libgmp-dev libgmp10 libncurses-dev libncurses5 libtinfo5 llvm libnuma-dev zlib1g-dev libpq-dev jq gcc libplist-utils gpg apt-transport-https\
+    && apt-get install -y git build-essential curl libffi-dev libffi7 libgmp-dev libgmp10 libncurses-dev libncurses5 libtinfo5 llvm libnuma-dev zlib1g-dev libpq-dev jq gcc libplist-utils gpg apt-transport-https software-properties-common\
     && apt-get clean
 
 # Install ghcup
