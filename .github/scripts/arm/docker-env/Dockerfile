@@ -12,7 +12,7 @@ ENV BOOTSTRAP_HASKELL_NONINTERACTIVE=1
 RUN bash -c "curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh"
 
 #Install MDATP
-RUN bash -c "curl --proto '=https' --tlsv1.2 -sSf https://packages.microsoft.com/config/ubuntu/21.10/prod.list"
+RUN bash -c "curl --proto '=https' --tlsv1.2 -o prod.list  https://packages.microsoft.com/config/ubuntu/21.10/prod.list"
 RUN bash -c "mv ./prod.list /etc/apt/sources.list.d/prod.list"
 RUN bash -c "curl --proto '=https' --tlsv1.2 -sSf https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -"
 RUN apt-get update -y
