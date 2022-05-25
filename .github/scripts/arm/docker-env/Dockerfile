@@ -18,7 +18,7 @@ RUN bash -c "curl --proto '=https' --tlsv1.2 -o prod.list  https://packages.micr
 RUN bash -c "mv ./prod.list /etc/apt/sources.list.d/prod.list"
 RUN  bash -c "curl --proto '=https' --tlsv1.2 -sSf https://packages.microsoft.com/keys/microsoft.asc | apt-key add; exit 0"
 RUN apt-get update -y
-RUN apt-get install mdatp
+RUN apt-get install -y mdatp
 RUN apt -t bionic install -y mdatp
 
 # Add ghcup to PATH
