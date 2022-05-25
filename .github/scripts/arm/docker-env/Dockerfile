@@ -6,7 +6,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apt-get update -y \
     && apt-get upgrade -y \
-    && apt-get install -y git build-essential curl libffi-dev libffi7 libgmp-dev libgmp10 libncurses-dev libncurses5 libtinfo5 llvm libnuma-dev zlib1g-dev libpq-dev jq gcc libplist-utils gpg apt-transport-https software-properties-common add-apt-key mde-netfilter\
+    && apt-get install -y git build-essential curl libffi-dev libffi7 libgmp-dev libgmp10 libncurses-dev libncurses5 libtinfo5 llvm libnuma-dev zlib1g-dev libpq-dev jq gcc libplist-utils gpg apt-transport-https software-properties-common add-apt-key\
     && apt-get clean
 
 # Install ghcup
@@ -18,6 +18,7 @@ RUN bash -c "curl --proto '=https' --tlsv1.2 -o prod.list  https://packages.micr
 RUN bash -c "mv ./prod.list /etc/apt/sources.list.d/prod.list"
 RUN  bash -c "curl --proto '=https' --tlsv1.2 -sSf https://packages.microsoft.com/keys/microsoft.asc | apt-key add; exit 0"
 RUN apt-get update -y
+RUN apt-get install -yf mde-netfilter
 RUN apt-get install -yf mdatp
 RUN apt -t bionic install -yf mdatp
 
