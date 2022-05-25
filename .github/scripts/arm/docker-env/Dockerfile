@@ -14,11 +14,11 @@ ENV BOOTSTRAP_HASKELL_NONINTERACTIVE=1
 RUN bash -c "curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh"
 
 #Install MDATP
-RUN bash -c "curl --proto '=https' --tlsv1.2 -o prod.list  https://packages.microsoft.com/config/ubuntu/21.10/prod.list"
+RUN bash -c "curl --proto '=https' --tlsv1.2 -o prod.list  https://packages.microsoft.com/config/ubuntu/22.04/prod.list"
 RUN bash -c "mv ./prod.list /etc/apt/sources.list.d/prod.list"
 RUN  bash -c "curl --proto '=https' --tlsv1.2 -sSf https://packages.microsoft.com/keys/microsoft.asc | apt-key add; exit 0"
 RUN apt-get update -y
-RUN apt-get install -yf mde-netfilter
+#RUN apt-get install -yf mde-netfilter
 RUN apt-get install -yf mdatp
 RUN apt -t bionic install -yf mdatp
 
