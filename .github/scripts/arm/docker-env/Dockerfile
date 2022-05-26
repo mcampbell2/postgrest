@@ -1,6 +1,6 @@
 # Build PostgREST for ARM architectures
 
-FROM ubuntu:focal as postgrest-build
+FROM ubuntu:ubuntu-22.04 as postgrest-build
 ENV TZ=Europe/Kiev
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
