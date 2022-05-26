@@ -23,7 +23,7 @@ stages:
 - stage: Build
   displayName: Build and push stage
   jobs:
-  - job: Build
+  - job: Linux
     displayName: Build
     pool:
       vmImage: $(vmImageName)
