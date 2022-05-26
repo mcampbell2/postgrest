@@ -1,29 +1,15 @@
 # Build PostgREST for ARM architectures
 
 FROM ubuntu:focal as postgrest-build
-ENV TZ=Europe/Kiev
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apt-get update -y \
     && apt-get upgrade -y \
-    && apt-get install -y git build-essential curl libffi-dev libffi7 libgmp-dev libgmp10 libncurses-dev libncurses5 libtinfo5 llvm libnuma-dev zlib1g-dev libpq-dev jq gcc libplist-utils gpg apt-transport-https software-properties-common add-apt-key libplist-utils gpg apt-transport-https libseccomp2 libuuid1 libatomic1 libc6 python3 uuid-runtime dmidecode auditd libselinux1 systemd\
+    && apt-get install -y git build-essential curl libffi-dev libffi7 libgmp-dev libgmp10 libncurses-dev libncurses5 libtinfo5 llvm libnuma-dev zlib1g-dev libpq-dev jq gcc \
     && apt-get clean
-    
-VOLUME [ "/sys/fs/cgroup" ]
-CMD [ "/usr/sbin/init" ]
 
 # Install ghcup
 ENV BOOTSTRAP_HASKELL_NONINTERACTIVE=1
 RUN bash -c "curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh"
-
-#Install MDATP
-RUN bash -c "curl --proto '=https' --tlsv1.2 -o prod.list  https://packages.microsoft.com/config/ubuntu/22.04/prod.list"
-RUN bash -c "mv ./prod.list /etc/apt/sources.list.d/prod.list"
-RUN  bash -c "curl --proto '=https' --tlsv1.2 -sSf https://packages.microsoft.com/keys/microsoft.asc | apt-key add; exit 0"
-RUN apt-get update -y
-RUN apt-get install -yf mde-netfilter; exit 0
-RUN apt-get install -yf mdatp
-RUN apt -t bionic install -yf mdatp
 
 # Add ghcup to PATH
 ENV PATH=${PATH}:/root/.local/bin
