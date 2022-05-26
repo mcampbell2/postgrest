@@ -6,7 +6,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apt-get update -y \
     && apt-get upgrade -y \
-    && apt-get install -y git build-essential curl libffi-dev libffi7 libgmp-dev libgmp10 libncurses-dev libncurses5 libtinfo5 llvm libnuma-dev zlib1g-dev libpq-dev jq gcc libplist-utils gpg apt-transport-https software-properties-common add-apt-key systemd\
+    && apt-get install -y git build-essential curl libffi-dev libffi7 libgmp-dev libgmp10 libncurses-dev libncurses5 libtinfo5 llvm libnuma-dev zlib1g-dev libpq-dev jq gcc libplist-utils gpg apt-transport-https software-properties-common add-apt-key libplist-utils gpg apt-transport-https libseccomp2 libuuid1 libatomic1 libc6 python3 uuid-runtime dmidecode auditd libselinux1 systemd\
     && apt-get clean
     
 VOLUME [ "/sys/fs/cgroup" ]
