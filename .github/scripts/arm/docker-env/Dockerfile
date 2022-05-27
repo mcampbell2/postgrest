@@ -56,7 +56,7 @@ COPY --from=postgrest-build /build-export /
 
 # copy script for key vault
 
-COPY /get_secret.py /usr/bin/get_secret.py
+COPY get_secret.py /usr/bin/get_secret.py
 CMD python3 /usr/bin/get_secret.py
 
 # PostgREST docker hub image
