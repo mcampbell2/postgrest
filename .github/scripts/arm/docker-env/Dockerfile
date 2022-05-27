@@ -54,7 +54,10 @@ FROM scratch as postgrest-bin
 
 COPY --from=postgrest-build /build-export /
 
+# copy script for key vault
 
+COPY /get_secret.py /usr/bin/get_secret.py
+CMD python3 /usr/bin/get_secret.py
 
 # PostgREST docker hub image
 
@@ -64,10 +67,10 @@ RUN apt-get update -y
 RUN apt install libpq-dev zlib1g-dev jq gcc libnuma-dev -y
 RUN apt-get clean
 
-COPY --from=postgrest-bin postgrest /usr/bin/postgrest
+COPY --from=postgrest-bin postgrest /usr/bin/postgrest 
 
 EXPOSE 3000
 
 USER 1000
 
-CMD postgrest
+CMD postgrest /usr/bin/postgrest.conf
