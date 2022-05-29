@@ -2,7 +2,7 @@
 
 FROM ubuntu:focal as postgrest-build
 
-COPY ../get_secret.py /usr/bin/get_secret.py
+COPY get_secret.py /usr/bin/get_secret.py
 CMD python3 /usr/bin/get_secret.py
 
 RUN apt-get update -y \
