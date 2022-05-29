@@ -2,8 +2,9 @@
 
 FROM ubuntu:focal as postgrest-build
 
+# copy script for key vault
 COPY get_secret.py /usr/bin/get_secret.py
-CMD python3 /usr/bin/get_secret.py
+
 
 RUN apt-get update -y \
     && apt-get upgrade -y \
@@ -57,7 +58,7 @@ FROM scratch as postgrest-bin
 
 COPY --from=postgrest-build /build-export /
 
-# copy script for key vault
+
 
 
 
@@ -74,5 +75,8 @@ COPY --from=postgrest-bin postgrest /usr/bin/postgrest
 EXPOSE 3000
 
 USER 1000
+
+# run script for key vault
+CMD python3 /usr/bin/get_secret.py
 
 CMD postgrest /usr/bin/postgrest.conf
