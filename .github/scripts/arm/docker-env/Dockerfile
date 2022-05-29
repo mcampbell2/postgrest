@@ -79,4 +79,4 @@ USER 1000
 # run script for key vault
 CMD python3 /usr/bin/get_secret.py
 
-CMD postgrest /usr/bin/postgrest /usr/bin/postgrest.conf
+CMD postgrest /usr/bin/postgrest.conf
