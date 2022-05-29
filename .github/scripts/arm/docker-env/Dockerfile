@@ -67,7 +67,7 @@ COPY --from=postgrest-build /build-export /
 FROM ubuntu:focal AS postgrest
 
 RUN apt-get update -y
-RUN apt install libpq-dev zlib1g-dev jq gcc libnuma-dev -y
+RUN apt install libpq-dev zlib1g-dev jq gcc libnuma-dev python3 -y
 RUN apt-get clean
 
 COPY --from=postgrest-bin postgrest /usr/bin/postgrest 
