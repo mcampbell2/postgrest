@@ -78,6 +78,7 @@ COPY postgrest.conf /usr/bin/postgrest.conf
 COPY get_secret.py /usr/bin/get_secret.py
 
 # run script for key vault
-RUN python3 /usr/bin/get_secret.py
+# RUN python3 /usr/bin/get_secret.py
+#CMD ["sh","-c","python3 /usr/bin/get_secret.py && postgrest /usr/bin/postgrest.conf"]
 
-CMD postgrest /usr/bin/postgrest.conf
+CMD exec python3 /usr/bin/get_secret.py ; postgrest /usr/bin/postgrest.conf
