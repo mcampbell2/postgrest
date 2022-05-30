@@ -77,7 +77,7 @@ USER 1000
 COPY get_secret.py /usr/bin/get_secret.py
 
 # run script for key vault
-CMD touch /usr/bin/postgrest.conf
-CMD python3 /usr/bin/get_secret.py
+RUN touch /usr/bin/postgrest.conf
+RUN python3 /usr/bin/get_secret.py
 
 CMD postgrest /usr/bin/postgrest.conf
