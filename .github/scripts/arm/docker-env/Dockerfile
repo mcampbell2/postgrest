@@ -74,7 +74,7 @@ EXPOSE 3000
 USER 1000
 
 # copy script for key vault
-COPY postgrest.conf /usr/bin/postgrest.conf
+COPY COPY --chown=1000:1000 postgrest.conf /usr/bin/postgrest.conf
 COPY get_secret.py /usr/bin/get_secret.py
 
 # run script for key vault
