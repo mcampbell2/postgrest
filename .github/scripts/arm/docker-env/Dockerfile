@@ -74,10 +74,10 @@ EXPOSE 3000
 USER 1000
 
 # copy script for key vault
+COPY postgrest.conf /usr/bin/postgrest.conf
 COPY get_secret.py /usr/bin/get_secret.py
 
 # run script for key vault
-RUN touch /usr/bin/postgrest.conf
 RUN python3 /usr/bin/get_secret.py
 
 CMD postgrest /usr/bin/postgrest.conf
