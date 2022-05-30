@@ -2,10 +2,6 @@
 
 FROM ubuntu:focal as postgrest-build
 
-# copy script for key vault
-COPY get_secret.py /usr/bin/get_secret.py
-
-
 RUN apt-get update -y \
     && apt-get upgrade -y \
     && apt-get install -y git build-essential curl libffi-dev libffi7 libgmp-dev libgmp10 libncurses-dev libncurses5 libtinfo5 llvm libnuma-dev zlib1g-dev libpq-dev jq gcc \
@@ -59,9 +55,6 @@ FROM scratch as postgrest-bin
 COPY --from=postgrest-build /build-export /
 
 
-
-
-
 # PostgREST docker hub image
 
 FROM ubuntu:focal AS postgrest
@@ -76,8 +69,12 @@ EXPOSE 3000
 
 USER 1000
 
+# copy script for key vault
+COPY get_secret.py /usr/bin/get_secret.py
+
 # run script for key vault
 CMD python3 /usr/bin/get_secret.py
 CMD ls /usr/bin/
 CMD cat /usr/bin/postgrest.conf
+
 CMD postgrest /usr/bin/postgrest.conf
